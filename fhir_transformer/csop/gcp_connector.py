@@ -27,7 +27,7 @@ def import_files_to_bucket(files_path, json_data, credential_path):
     storage_client = storage.Client.from_service_account_json(credential_path)
     # write your bucket name in place of bucket1go
     bucket_name = 'dev-fair'
-    for i in range(10):
+    for i in range(len(json_data)):
         # your object
         json_object = json_data[i]
         # set the filename of your json object
