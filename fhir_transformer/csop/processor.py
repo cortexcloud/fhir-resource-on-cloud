@@ -28,6 +28,6 @@ def process(bill_trans_xml_path: str, bill_disp_xml_path: str, import_time: date
     # Prepare Bundle Resource From XML
     bundle_resource = create_bundle_resource(bill_trans_xml_data,bill_disp_xml_data,h_code,h_name)
     # Send Bundle Json To GCS 
-    import_files_to_bucket(files_path,bundle_resource,credential_path)
+    import_files_to_bucket(files_path,bundle_resource,gcs_bucket_name,credential_path)
     # Call GCP API to Import Json to FHIR server
     import_fhir_resources(project_id,location,dataset_id,fhir_store_id,gcs_path,credential_path)

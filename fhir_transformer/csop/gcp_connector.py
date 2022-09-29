@@ -23,17 +23,16 @@ def create_json(json_object, filename, storage_client, bucket_name):
     result = filename + ' upload complete'
     return {'response' : result}
 
-def import_files_to_bucket(files_path, json_data, credential_path):
+def import_files_to_bucket(files_path, json_data, gcs_bucket_name, credential_path):
     storage_client = storage.Client.from_service_account_json(credential_path)
     # write your bucket name in place of bucket1go
-    bucket_name = 'dev-fair'
     for i in range(len(json_data)):
         # your object
         json_object = json_data[i]
         # set the filename of your json object
         filename = f'{files_path}/SBH_'+str(i)+'.json'
         # run the function and pass the json_object
-        print(create_json(json_object, filename, storage_client, bucket_name))
+        print(create_json(json_object, filename, storage_client, gcs_bucket_name))
     print('Import Json to GCS Successfully')
 
 def import_fhir_resources(project_id, location, dataset_id, fhir_store_id, gcs_uri, credential_path):
